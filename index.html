@@ -9,594 +9,412 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Poppins',sans-serif;background:#F4EDE3;color:#411517;min-height:100vh}
-:root{
-  --orange:#FF5900;--orange-light:#FFF0E8;--orange-mid:#FFD1B3;
-  --burg:#411517;--cream:#F4EDE3;--white:#FFFFFF;
-  --green:#1a7a4a;--green-bg:#e8f5ee;
-  --red:#c0392b;--red-bg:#fdf0ee;
-  --gray:#595959;--border:#e8e0d8;
-}
-
-/* ── Header ── */
-.tlb-header{background:var(--orange);padding:16px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
-.tlb-header-left{display:flex;align-items:center;gap:14px}
+.tlb-header{background:#FF5900;padding:16px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
 .tlb-logo{font-size:22px;font-weight:700;color:#fff;letter-spacing:-0.5px}
 .tlb-logo span{color:#CFFF00}
-.tlb-subtitle{font-size:13px;color:rgba(255,255,255,0.75)}
+.tlb-sub{font-size:13px;color:rgba(255,255,255,0.75)}
 .live-pill{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,0.15);border-radius:20px;padding:6px 14px}
 .live-dot{width:8px;height:8px;border-radius:50%;background:#CFFF00;animation:blink 1.8s infinite}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
 .live-text{font-size:12px;font-weight:500;color:#fff}
-
-/* ── Controls ── */
-.controls{background:#fff;border-bottom:1px solid var(--border);padding:14px 28px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
-.ctrl-label{font-size:12px;font-weight:600;color:var(--gray);letter-spacing:.04em}
-.tlb-input,.tlb-select{font-family:'Poppins',sans-serif;font-size:13px;border:1.5px solid var(--border);border-radius:8px;padding:7px 12px;background:#fff;color:var(--burg);outline:none;cursor:pointer}
-.tlb-input:focus,.tlb-select:focus{border-color:var(--orange)}
-.tlb-btn{font-family:'Poppins',sans-serif;font-size:13px;font-weight:600;padding:8px 20px;border-radius:8px;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:opacity .15s}
-.tlb-btn:hover{opacity:.85}
-.btn-primary{background:var(--orange);color:#fff}
-.btn-outline{background:#fff;color:var(--orange);border:1.5px solid var(--orange)}
-.divider{width:1px;height:24px;background:var(--border);flex-shrink:0}
-.chip{font-family:'Poppins',sans-serif;font-size:12px;font-weight:500;padding:5px 14px;border-radius:20px;border:1.5px solid var(--border);background:#fff;color:var(--gray);cursor:pointer;transition:all .15s;white-space:nowrap}
-.chip:hover{border-color:var(--orange);color:var(--orange)}
-.chip.on{background:var(--orange);color:#fff;border-color:var(--orange)}
-.status-area{margin-left:auto;display:flex;align-items:center;gap:8px;font-size:12px;color:var(--gray)}
-.spinner{width:14px;height:14px;border:2px solid var(--border);border-top-color:var(--orange);border-radius:50%;animation:spin .7s linear infinite;display:none;flex-shrink:0}
+.controls{background:#fff;border-bottom:1px solid #e8e0d8;padding:12px 28px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.ctrl-label{font-size:12px;font-weight:600;color:#595959}
+input[type=date],select{font-family:'Poppins',sans-serif;font-size:13px;border:1.5px solid #e8e0d8;border-radius:8px;padding:7px 12px;background:#fff;color:#411517;outline:none;cursor:pointer}
+input[type=date]:focus,select:focus{border-color:#FF5900}
+.btn{font-family:'Poppins',sans-serif;font-size:13px;font-weight:600;padding:8px 18px;border-radius:8px;border:none;cursor:pointer;transition:opacity .15s}
+.btn:hover{opacity:.85}
+.btn-p{background:#FF5900;color:#fff}
+.btn-o{background:#fff;color:#FF5900;border:1.5px solid #FF5900}
+.div{width:1px;height:24px;background:#e8e0d8;flex-shrink:0}
+.chip{font-family:'Poppins',sans-serif;font-size:12px;font-weight:500;padding:5px 13px;border-radius:20px;border:1.5px solid #e8e0d8;background:#fff;color:#595959;cursor:pointer;transition:all .15s;white-space:nowrap}
+.chip:hover{border-color:#FF5900;color:#FF5900}
+.chip.on{background:#FF5900;color:#fff;border-color:#FF5900}
+.status{margin-left:auto;display:flex;align-items:center;gap:8px;font-size:12px;color:#595959}
+.spinner{width:14px;height:14px;border:2px solid #e8e0d8;border-top-color:#FF5900;border-radius:50%;animation:spin .7s linear infinite;display:none}
 @keyframes spin{to{transform:rotate(360deg)}}
-
-/* ── Layout ── */
 .page{max-width:1200px;margin:0 auto;padding:0 28px 48px}
-.section{margin-top:28px}
-.section-heading{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--orange);margin-bottom:14px;display:flex;align-items:center;gap:10px}
-.section-heading::after{content:'';flex:1;height:1px;background:var(--orange-mid)}
-.card{background:#fff;border-radius:14px;border:1px solid var(--border);padding:20px 24px}
-.card-title{font-size:13px;font-weight:600;color:var(--burg);margin-bottom:16px}
-
-/* ── KPI row ── */
-.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
-.kpi{background:#fff;border-radius:14px;border:1px solid var(--border);padding:18px 20px}
-.kpi.hero{background:var(--orange);border-color:var(--orange)}
-.kpi-val{font-size:32px;font-weight:700;color:var(--burg);line-height:1;margin-bottom:5px}
-.kpi.hero .kpi-val{color:#fff}
-.kpi-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--gray)}
-.kpi.hero .kpi-label{color:rgba(255,255,255,.75)}
-.kpi-sub{font-size:11px;color:var(--gray);margin-top:4px}
-.kpi.hero .kpi-sub{color:rgba(255,255,255,.65)}
-
-/* ── Two column ── */
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-@media(max-width:700px){.two-col{grid-template-columns:1fr}}
-
-/* ── Reason bars ── */
-.rbar{display:flex;align-items:center;gap:10px;margin-bottom:10px;font-size:13px}
-.rbar-name{width:110px;flex-shrink:0;color:var(--burg);font-weight:500;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.rbar-track{flex:1;height:8px;background:var(--cream);border-radius:4px;overflow:hidden}
-.rbar-fill{height:100%;border-radius:4px;background:var(--orange)}
-.rbar-n{width:28px;text-align:right;color:var(--gray);font-size:12px;font-weight:600}
-
-/* ── Snap browser ── */
-.snap-row{display:flex;align-items:center;gap:8px;margin-bottom:14px}
-.snap-item{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:.5px solid var(--border);font-size:12px}
-.snap-item:last-child{border-bottom:none}
-.snap-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-.snap-name{flex:1;color:var(--burg);font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.snap-area{color:var(--gray);font-size:11px;white-space:nowrap}
-.snap-dur{color:var(--gray);font-size:11px;min-width:32px;text-align:right}
-.snap-heading{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
-
-/* ── Table ── */
-.table-wrap{overflow-x:auto}
-.tbl-toolbar{padding:12px 20px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border);flex-wrap:wrap}
-.tbl-search{font-family:'Poppins',sans-serif;font-size:13px;border:1.5px solid var(--border);border-radius:8px;padding:6px 12px;background:#fff;color:var(--burg);outline:none;flex:1;min-width:160px;max-width:260px}
-.tbl-search:focus{border-color:var(--orange)}
-.tbl-count{font-size:12px;color:var(--gray);margin-left:auto}
-table{width:100%;border-collapse:collapse;table-layout:fixed;min-width:600px}
-thead{background:var(--cream)}
-th{padding:10px 14px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--orange);text-align:left;cursor:pointer;white-space:nowrap;border-bottom:1px solid var(--border);user-select:none}
-th:hover{color:var(--burg)}
-td{padding:10px 14px;font-size:13px;border-bottom:.5px solid var(--border);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sec{margin-top:28px}
+.sec-head{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#FF5900;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.sec-head::after{content:'';flex:1;height:1px;background:#FFD1B3}
+.card{background:#fff;border-radius:14px;border:1px solid #e8e0d8;padding:20px 24px}
+.card-t{font-size:13px;font-weight:600;color:#411517;margin-bottom:16px}
+.kpi-g{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
+.kpi{background:#fff;border-radius:14px;border:1px solid #e8e0d8;padding:18px 20px}
+.kpi.h{background:#FF5900;border-color:#FF5900}
+.kv{font-size:32px;font-weight:700;color:#411517;line-height:1;margin-bottom:5px}
+.kpi.h .kv{color:#fff}
+.kl{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:#595959}
+.kpi.h .kl{color:rgba(255,255,255,.75)}
+.ks{font-size:11px;color:#595959;margin-top:4px}
+.kpi.h .ks{color:rgba(255,255,255,.65)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:700px){.two{grid-template-columns:1fr}}
+.rb{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.rbn{width:120px;flex-shrink:0;color:#411517;font-weight:500;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rbt{flex:1;height:8px;background:#F4EDE3;border-radius:4px;overflow:hidden}
+.rbf{height:100%;border-radius:4px;background:#FF5900}
+.rbc{width:28px;text-align:right;color:#595959;font-size:12px;font-weight:600}
+.snap-r{display:flex;align-items:center;gap:8px;margin-bottom:14px}
+.si{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:.5px solid #e8e0d8;font-size:12px}
+.si:last-child{border-bottom:none}
+.sd{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.sn{flex:1;color:#411517;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sa{color:#595959;font-size:11px;white-space:nowrap;max-width:90px;overflow:hidden;text-overflow:ellipsis}
+.sdur{color:#595959;font-size:11px;min-width:32px;text-align:right}
+.sh{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px}
+.tbl-bar{padding:12px 20px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #e8e0d8;flex-wrap:wrap}
+.tbl-s{font-family:'Poppins',sans-serif;font-size:13px;border:1.5px solid #e8e0d8;border-radius:8px;padding:6px 12px;background:#fff;color:#411517;outline:none;flex:1;min-width:160px;max-width:260px}
+.tbl-s:focus{border-color:#FF5900}
+.tbl-c{font-size:12px;color:#595959;margin-left:auto}
+.tw{overflow-x:auto}
+table{width:100%;border-collapse:collapse;min-width:600px}
+thead{background:#F4EDE3}
+th{padding:10px 14px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#FF5900;text-align:left;cursor:pointer;white-space:nowrap;border-bottom:1px solid #e8e0d8;user-select:none}
+th:hover{color:#411517}
+td{padding:10px 14px;font-size:13px;border-bottom:.5px solid #e8e0d8;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:180px}
 tr:last-child td{border-bottom:none}
 tr:hover td{background:#fff8f4}
-.c-time{width:60px}.c-vendor{width:28%}.c-area{width:16%}.c-dur{width:68px}.c-status{width:90px}.c-reason{width:22%}.c-src{width:100px}
-
-/* ── Badges ── */
 .badge{display:inline-block;font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;white-space:nowrap}
-.b-offline{background:var(--red-bg);color:var(--red)}
-.b-resolved{background:var(--green-bg);color:var(--green)}
-.b-kitchen{background:#fff0e8;color:#b34700}
-.b-menu{background:#e8f0ff;color:#1a4fa0}
-.b-drivers{background:#fff8e0;color:#7a5500}
-.b-failure{background:#fce8f0;color:#8a1a45}
-.b-holiday{background:#f0e8ff;color:#5a1aa0}
-.b-other{background:#f0f0f0;color:#444}
-
-/* ── Error / info banners ── */
+.bo{background:#fdf0ee;color:#c0392b}
+.br{background:#e8f5ee;color:#1a7a4a}
+.bk{background:#fff0e8;color:#b34700}
+.bm{background:#e8f0ff;color:#1a4fa0}
+.bd{background:#fff8e0;color:#7a5500}
+.bf{background:#fce8f0;color:#8a1a45}
+.bh{background:#f0e8ff;color:#5a1aa0}
+.bt{background:#e8f8ff;color:#0a5a7a}
+.bg{background:#f0f0f0;color:#444}
 .banner{border-radius:10px;padding:12px 16px;font-size:13px;margin-top:16px;display:flex;align-items:center;gap:10px}
-.banner-warn{background:#fff8e0;border:1px solid #f0d060;color:#7a5500}
-.banner-err{background:var(--red-bg);border:1px solid #f5c6c0;color:var(--red)}
-.banner-info{background:#e8f5ee;border:1px solid #a0d8b8;color:var(--green)}
-
-/* ── Step guide (shown before first load) ── */
-.guide{background:#fff;border-radius:14px;border:1px solid var(--border);padding:28px 32px;margin-top:28px}
-.guide-title{font-size:18px;font-weight:700;color:var(--orange);margin-bottom:8px}
-.guide-sub{font-size:14px;color:var(--gray);margin-bottom:20px}
-.guide-step{display:flex;gap:16px;margin-bottom:18px;align-items:flex-start}
-.step-num{width:32px;height:32px;border-radius:50%;background:var(--orange);color:#fff;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
-.step-body{flex:1}
-.step-title{font-size:14px;font-weight:600;color:var(--burg);margin-bottom:4px}
-.step-desc{font-size:13px;color:var(--gray);line-height:1.6}
-.step-desc code{background:var(--cream);border-radius:4px;padding:1px 6px;font-family:monospace;font-size:12px;color:var(--burg)}
-.step-desc a{color:var(--orange);text-decoration:none;font-weight:500}
-.step-desc a:hover{text-decoration:underline}
+.bwarn{background:#fff8e0;border:1px solid #f0d060;color:#7a5500}
+.berr{background:#fdf0ee;border:1px solid #f5c6c0;color:#c0392b}
+.binfo{background:#e8f5ee;border:1px solid #a0d8b8;color:#1a7a4a}
 </style>
 </head>
 <body>
 
-<!-- ── Header ── -->
 <div class="tlb-header">
-  <div class="tlb-header-left">
+  <div>
     <div class="tlb-logo">talabat <span>radar</span></div>
-    <div class="tlb-subtitle">#busy_radar_kw · Kuwait vendor availability</div>
+    <div class="tlb-sub">#busy_radar_kw · Kuwait vendor availability</div>
   </div>
   <div class="live-pill">
     <div class="live-dot"></div>
-    <span class="live-text" id="live-label">Not loaded</span>
+    <span class="live-text" id="live-label">Loading…</span>
   </div>
 </div>
 
-<!-- ── Controls ── -->
 <div class="controls">
   <span class="ctrl-label">Date</span>
-  <input type="date" class="tlb-input" id="date-picker" value="2026-07-08">
-
-  <button class="tlb-btn btn-primary" onclick="onRefresh()">
-    ↻ Refresh
-  </button>
-
-  <div class="divider"></div>
+  <input type="date" id="date-pick" value="2026-07-09">
+  <button class="btn btn-p" onclick="onRefresh()">↻ Refresh from Claude</button>
+  <div class="div"></div>
   <span class="ctrl-label">Status</span>
-  <button class="chip on" id="chip-all"      onclick="setStatus('all')">All</button>
-  <button class="chip"    id="chip-ongoing"  onclick="setStatus('ongoing')">Offline</button>
-  <button class="chip"    id="chip-resolved" onclick="setStatus('resolved')">Resolved</button>
-
-  <div class="divider"></div>
+  <button class="chip on" id="c-all"      onclick="setStatus('all')">All</button>
+  <button class="chip"    id="c-ongoing"  onclick="setStatus('ongoing')">Offline</button>
+  <button class="chip"    id="c-resolved" onclick="setStatus('resolved')">Resolved</button>
+  <div class="div"></div>
   <span class="ctrl-label">Reason</span>
-  <button class="chip on" id="chip-r-ALL"                onclick="setReason('ALL')">All</button>
-  <button class="chip"    id="chip-r-TOO_BUSY_KITCHEN"   onclick="setReason('TOO_BUSY_KITCHEN')">Kitchen</button>
-  <button class="chip"    id="chip-r-UPDATES_IN_MENU"    onclick="setReason('UPDATES_IN_MENU')">Menu</button>
-  <button class="chip"    id="chip-r-TOO_BUSY_NO_DRIVERS" onclick="setReason('TOO_BUSY_NO_DRIVERS')">No drivers</button>
-  <button class="chip"    id="chip-r-OTHER"              onclick="setReason('OTHER')">Other</button>
-
-  <div class="status-area">
+  <button class="chip on" id="c-ALL"                 onclick="setReason('ALL')">All</button>
+  <button class="chip"    id="c-TOO_BUSY_KITCHEN"    onclick="setReason('TOO_BUSY_KITCHEN')">Kitchen</button>
+  <button class="chip"    id="c-UPDATES_IN_MENU"     onclick="setReason('UPDATES_IN_MENU')">Menu</button>
+  <button class="chip"    id="c-TOO_BUSY_NO_DRIVERS" onclick="setReason('TOO_BUSY_NO_DRIVERS')">No drivers</button>
+  <button class="chip"    id="c-ORDER_FAILURE"       onclick="setReason('ORDER_FAILURE')">Order failure</button>
+  <button class="chip"    id="c-OTHER"               onclick="setReason('OTHER')">Other</button>
+  <div class="status">
     <div class="spinner" id="spinner"></div>
-    <span id="status-msg">Select a date and hit Refresh</span>
+    <span id="smsg">Ready</span>
   </div>
 </div>
 
-<!-- ── Page body ── -->
 <div class="page">
+  <div id="banner"></div>
 
-  <!-- Setup guide (shown until first load) -->
-  <div id="setup-guide" class="guide">
-    <div class="guide-title">Welcome to Talabat Radar</div>
-    <div class="guide-sub">This dashboard reads live data from your Slack channel. Two ways to load data:</div>
-
-    <div class="guide-step">
-      <div class="step-num">1</div>
-      <div class="step-body">
-        <div class="step-title">Quick start — paste Slack data</div>
-        <div class="step-desc">
-          Copy raw messages from <code>#busy_radar_kw</code>, paste them into the text area below, and click <strong>Load pasted data</strong>. The dashboard parses it instantly — no API key needed.
-        </div>
-      </div>
-    </div>
-
-    <div class="guide-step">
-      <div class="step-num">2</div>
-      <div class="step-body">
-        <div class="step-title">Live mode — connect Slack via webhook</div>
-        <div class="step-desc">
-          Set up a Slack app that posts to a Google Sheet every time #busy_radar_kw updates, then point this dashboard at the Sheet's public JSON URL. Step-by-step guide: <a href="https://docs.google.com/document/d/setup" target="_blank">see the setup doc →</a>
-          <br><br>Or add your <code>SLACK_TOKEN</code> and <code>CHANNEL_ID</code> in the config section below to fetch directly.
-        </div>
-      </div>
-    </div>
-
-    <div class="guide-step">
-      <div class="step-num">3</div>
-      <div class="step-body">
-        <div class="step-title">Load today's cached data (Jul 8)</div>
-        <div class="step-desc">
-          Select <code>2026-07-08</code> in the date picker and click <strong>Refresh</strong> to load the full day of embedded data right now — no setup needed.
-        </div>
-      </div>
-    </div>
-
-    <!-- Paste area -->
-    <div style="margin-top:20px;padding-top:20px;border-top:1px solid var(--border)">
-      <div class="step-title" style="margin-bottom:8px">Paste Slack messages here</div>
-      <textarea id="paste-area" placeholder="Paste raw #busy_radar_kw Slack messages here…" style="width:100%;height:120px;font-family:monospace;font-size:12px;border:1.5px solid var(--border);border-radius:8px;padding:10px;resize:vertical;outline:none;color:var(--burg)"></textarea>
-      <button class="tlb-btn btn-primary" style="margin-top:10px" onclick="loadPasted()">Load pasted data</button>
+  <!-- KPIs -->
+  <div class="sec">
+    <div class="sec-head">Overview</div>
+    <div class="kpi-g">
+      <div class="kpi h"><div class="kv" id="k-off">—</div><div class="kl">Offline now</div><div class="ks" id="k-off-s">latest snapshot</div></div>
+      <div class="kpi"><div class="kv" id="k-res">—</div><div class="kl">Resolved L15m</div><div class="ks">most recent window</div></div>
+      <div class="kpi"><div class="kv" id="k-peak">—</div><div class="kl">Peak offline</div><div class="ks" id="k-peak-s">today</div></div>
+      <div class="kpi"><div class="kv" id="k-total">—</div><div class="kl">Total events</div><div class="ks" id="k-snaps">—</div></div>
+      <div class="kpi"><div class="kv" id="k-avg">—</div><div class="kl">Avg duration</div><div class="ks">resolved events</div></div>
     </div>
   </div>
 
-  <div id="banner-area"></div>
-
-  <!-- ── Section 1: KPIs ── -->
-  <div class="section" id="section-kpi" style="display:none">
-    <div class="section-heading">Overview</div>
-    <div class="kpi-grid">
-      <div class="kpi hero">
-        <div class="kpi-val" id="kpi-offline">—</div>
-        <div class="kpi-label">Offline now</div>
-        <div class="kpi-sub" id="kpi-offline-sub">latest snapshot</div>
-      </div>
-      <div class="kpi">
-        <div class="kpi-val" id="kpi-resolved-now">—</div>
-        <div class="kpi-label">Resolved (L15m)</div>
-        <div class="kpi-sub">most recent window</div>
-      </div>
-      <div class="kpi">
-        <div class="kpi-val" id="kpi-peak">—</div>
-        <div class="kpi-label">Peak offline</div>
-        <div class="kpi-sub" id="kpi-peak-time">today</div>
-      </div>
-      <div class="kpi">
-        <div class="kpi-val" id="kpi-total">—</div>
-        <div class="kpi-label">Total events</div>
-        <div class="kpi-sub" id="kpi-snaps">— snapshots</div>
-      </div>
-      <div class="kpi">
-        <div class="kpi-val" id="kpi-avg">—</div>
-        <div class="kpi-label">Avg duration</div>
-        <div class="kpi-sub">resolved events</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── Section 2: Timeline ── -->
-  <div class="section" id="section-chart" style="display:none">
-    <div class="section-heading">Vendors offline over time</div>
+  <!-- Timeline -->
+  <div class="sec">
+    <div class="sec-head">Vendors offline over time</div>
     <div class="card">
       <div style="position:relative;width:100%;height:200px">
-        <canvas id="timeline-chart" role="img" aria-label="Line chart of vendors offline per snapshot">Vendors offline trend.</canvas>
+        <canvas id="tchart" role="img" aria-label="Vendors offline per snapshot">Trend of vendors offline.</canvas>
       </div>
     </div>
   </div>
 
-  <!-- ── Section 3: Breakdown + Snapshot browser ── -->
-  <div class="section" id="section-breakdown" style="display:none">
-    <div class="section-heading">Breakdown</div>
-    <div class="two-col">
+  <!-- Breakdown + Snapshot -->
+  <div class="sec">
+    <div class="sec-head">Breakdown</div>
+    <div class="two">
       <div class="card">
-        <div class="card-title">Offline reason</div>
-        <div id="reason-bars"></div>
+        <div class="card-t">Offline reason</div>
+        <div id="rbars"></div>
       </div>
       <div class="card">
-        <div class="card-title">Snapshot browser</div>
-        <div class="snap-row">
-          <button class="tlb-btn btn-outline" style="padding:6px 12px;font-size:16px" onclick="stepSnap(-1)">‹</button>
-          <select class="tlb-select" id="snap-select" style="flex:1" onchange="loadSnap(this.value)"></select>
-          <button class="tlb-btn btn-outline" style="padding:6px 12px;font-size:16px" onclick="stepSnap(1)">›</button>
+        <div class="card-t">Snapshot browser</div>
+        <div class="snap-r">
+          <button class="btn btn-o" style="padding:6px 12px;font-size:16px" onclick="stepSnap(-1)">‹</button>
+          <select id="snap-sel" style="flex:1" onchange="loadSnap(this.value)"></select>
+          <button class="btn btn-o" style="padding:6px 12px;font-size:16px" onclick="stepSnap(1)">›</button>
         </div>
-        <div id="snap-body"></div>
+        <div id="snap-body" style="max-height:340px;overflow-y:auto"></div>
       </div>
     </div>
   </div>
 
-  <!-- ── Section 4: Event log ── -->
-  <div class="section" id="section-table" style="display:none">
-    <div class="section-heading">Event log</div>
+  <!-- Event log -->
+  <div class="sec">
+    <div class="sec-head">Event log</div>
     <div class="card" style="padding:0;overflow:hidden">
-      <div class="tbl-toolbar">
-        <input class="tbl-search" type="text" id="tbl-search" placeholder="Search vendor or area…" oninput="renderTable()">
-        <span class="tbl-count" id="tbl-count">— rows</span>
+      <div class="tbl-bar">
+        <input class="tbl-s" type="text" id="tsearch" placeholder="Search vendor or area…" oninput="renderTable()">
+        <span class="tbl-c" id="tcount">— rows</span>
       </div>
-      <div class="table-wrap">
+      <div class="tw">
         <table>
-          <thead>
-            <tr>
-              <th class="c-time"   onclick="sortBy('snapshot')">Time <span id="s-snapshot"></span></th>
-              <th class="c-vendor" onclick="sortBy('name')">Vendor <span id="s-name"></span></th>
-              <th class="c-area"   onclick="sortBy('area')">Area <span id="s-area"></span></th>
-              <th class="c-dur"    onclick="sortBy('dur')">Duration <span id="s-dur">↓</span></th>
-              <th class="c-status" onclick="sortBy('status')">Status <span id="s-status"></span></th>
-              <th class="c-reason" onclick="sortBy('reason')">Reason <span id="s-reason"></span></th>
-              <th class="c-src"    onclick="sortBy('svc')">Source <span id="s-svc"></span></th>
-            </tr>
-          </thead>
-          <tbody id="table-body"></tbody>
+          <thead><tr>
+            <th onclick="sortBy('snapshot')" style="width:60px">Time <span id="s-snapshot"></span></th>
+            <th onclick="sortBy('name')" style="width:26%">Vendor <span id="s-name"></span></th>
+            <th onclick="sortBy('area')" style="width:15%">Area <span id="s-area"></span></th>
+            <th onclick="sortBy('dur')" style="width:70px">Min <span id="s-dur">↓</span></th>
+            <th onclick="sortBy('status')" style="width:88px">Status <span id="s-status"></span></th>
+            <th onclick="sortBy('reason')" style="width:22%">Reason <span id="s-reason"></span></th>
+            <th onclick="sortBy('svc')" style="width:110px">Source <span id="s-svc"></span></th>
+          </tr></thead>
+          <tbody id="tbody"></tbody>
         </table>
       </div>
     </div>
   </div>
 
-</div><!-- /page -->
+  <div style="margin-top:20px;text-align:center">
+    <button class="btn btn-o" onclick="showPaste()">↑ Paste new Slack data</button>
+  </div>
+
+  <!-- Paste area (hidden by default) -->
+  <div id="paste-box" style="display:none;margin-top:20px" class="card">
+    <div class="card-t">Paste Slack messages to update</div>
+    <p style="font-size:13px;color:#595959;margin-bottom:12px;line-height:1.6">
+      Copy messages from <code style="background:#F4EDE3;padding:1px 6px;border-radius:4px">#busy_radar_kw</code> in Slack and paste below.
+      Each message block should end with <code style="background:#F4EDE3;padding:1px 6px;border-radius:4px">Data updated at …</code>
+    </p>
+    <textarea id="paste-area" placeholder="Paste Slack messages here…" style="width:100%;height:130px;font-family:monospace;font-size:12px;border:1.5px solid #e8e0d8;border-radius:8px;padding:10px;resize:vertical;outline:none;color:#411517;line-height:1.6"></textarea>
+    <div style="display:flex;gap:10px;margin-top:10px">
+      <button class="btn btn-p" onclick="loadPasted()">Load pasted data</button>
+      <button class="btn btn-o" onclick="document.getElementById('paste-box').style.display='none'">Cancel</button>
+    </div>
+  </div>
+</div>
 
 <script>
-/* ──────────────────────────────────────────────
-   CONFIG — edit these to connect live sources
-   ────────────────────────────────────────────── */
-const CONFIG = {
-  SLACK_CHANNEL_ID: 'C0AKC399JDP',
-  SHEETS_JSON_URL: '',      // paste your Google Sheets JSON URL here
-  SLACK_TOKEN:     '',      // paste your Slack bot token here (keep this private!)
-};
-
-/* ──────────────────────────────────────────────
-   State
-   ────────────────────────────────────────────── */
+/* ── State ── */
 let SNAPS=[], ROWS=[], chart=null, snapIdx=0;
 let fStatus='all', fReason='ALL', sortCol='dur', sortDir=-1;
 
-/* ──────────────────────────────────────────────
-   Reason metadata
-   ────────────────────────────────────────────── */
-const RM = {
-  TOO_BUSY_KITCHEN:    {label:'Kitchen busy', cls:'b-kitchen'},
-  UPDATES_IN_MENU:     {label:'Menu update',  cls:'b-menu'},
-  OTHER:               {label:'Other',        cls:'b-other'},
-  TOO_BUSY_NO_DRIVERS: {label:'No drivers',   cls:'b-drivers'},
-  ORDER_FAILURE:       {label:'Order failure',cls:'b-failure'},
-  HOLIDAY_SPECIAL_DAY: {label:'Holiday',      cls:'b-holiday'},
-  TECHNICAL_PROBLEM:   {label:'Tech issue',   cls:'b-other'},
+const RM={
+  TOO_BUSY_KITCHEN:    {l:'Kitchen busy',  c:'bk'},
+  UPDATES_IN_MENU:     {l:'Menu update',   c:'bm'},
+  OTHER:               {l:'Other',         c:'bg'},
+  TOO_BUSY_NO_DRIVERS: {l:'No drivers',    c:'bd'},
+  ORDER_FAILURE:       {l:'Order failure', c:'bf'},
+  HOLIDAY_SPECIAL_DAY: {l:'Holiday',       c:'bh'},
+  TECHNICAL_PROBLEM:   {l:'Tech issue',    c:'bt'},
+  CHECK_IN_FAILED:     {l:'Check-in fail', c:'bf'},
 };
-const rm = r => RM[r] || {label:r, cls:'b-other'};
+const rm = r => RM[r]||{l:r,c:'bg'};
 
-/* ──────────────────────────────────────────────
-   Embedded data — Jul 8 2026 (full day)
-   ────────────────────────────────────────────── */
-const DATA_2026_07_08 = [
-  {time:"07:10",ongoing:[{name:"(unknown)",area:"",dur:2469,reason:"OTHER",svc:"GO Client"},{name:"Tabe3y",area:"Shuwaikh",dur:621,reason:"UPDATES_IN_MENU",svc:"GO Client"}],resolved:[]},
-  {time:"07:40",ongoing:[{name:"(unknown)",area:"",dur:2349,reason:"OTHER",svc:"GO Client"},{name:"Tabe3y",area:"Shuwaikh",dur:501,reason:"UPDATES_IN_MENU",svc:"GO Client"},{name:"Jaber Al Ali Coop",area:"",dur:29,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"}],resolved:[{name:"Gulf Store",area:"qurain",dur:30,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"}]},
-  {time:"08:55",ongoing:[{name:"(unknown)",area:"",dur:2439,reason:"OTHER",svc:"GO Client"},{name:"Tabe3y",area:"Shuwaikh",dur:591,reason:"UPDATES_IN_MENU",svc:"GO Client"},{name:"Alf Leila Wa Leila",area:"Hawally",dur:54,reason:"OTHER",svc:"GO Client"},{name:"Bloemen Avenue",area:"Hawally",dur:4,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"}],resolved:[]},
-  {time:"09:10",ongoing:[{name:"(unknown)",area:"",dur:2454,reason:"OTHER",svc:"GO Client"},{name:"Tabe3y",area:"Shuwaikh",dur:606,reason:"UPDATES_IN_MENU",svc:"GO Client"}],resolved:[{name:"Alf Leila Wa Leila",area:"Hawally",dur:59,reason:"OTHER",svc:"GO Client"},{name:"Bloemen Avenue",area:"Hawally",dur:11,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"}]},
-  {time:"10:10",ongoing:[{name:"(unknown)",area:"",dur:2514,reason:"OTHER",svc:"GO Client"},{name:"Tabe3y",area:"Shuwaikh",dur:666,reason:"UPDATES_IN_MENU",svc:"GO Client"},{name:"kings coffee",area:"Fintas",dur:38,reason:"OTHER",svc:"GO Client"},{name:"Smart Lab",area:"Jabriya",dur:10,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"},{name:"Wholesale Flower Ctr",area:"Hawally",dur:10,reason:"UPDATES_IN_MENU",svc:"Ops Portal"}],resolved:[{name:"alfouz roastery",area:"Sabah Al Salem",dur:14,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"}]},
-  {time:"10:55",ongoing:[{name:"(unknown)",area:"",dur:2559,reason:"OTHER",svc:"GO Client"},{name:"kings coffee",area:"Fintas",dur:83,reason:"OTHER",svc:"GO Client"},{name:"Wholesale Flower Ctr",area:"Hawally",dur:55,reason:"UPDATES_IN_MENU",svc:"Ops Portal"}],resolved:[{name:"Tabe3y",area:"Shuwaikh",dur:702,reason:"UPDATES_IN_MENU",svc:"GO Client"},{name:"Centrepoint Beauty",area:"Kuwait City",dur:26,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"}]},
-  {time:"11:40",ongoing:[{name:"(unknown)",area:"",dur:2604,reason:"OTHER",svc:"GO Client"},{name:"kings coffee",area:"Fintas",dur:128,reason:"OTHER",svc:"GO Client"},{name:"Wholesale Flower Ctr",area:"Hawally",dur:100,reason:"UPDATES_IN_MENU",svc:"Ops Portal"},{name:"Jaber Al Ali Coop",area:"",dur:19,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"}],resolved:[{name:"MMY Rose",area:"Nahda",dur:16,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"},{name:"alfouz roastery",area:"Sabah Al Salem",dur:9,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"}]},
-  {time:"12:26",ongoing:[{name:"(unknown)",area:"",dur:2649,reason:"OTHER",svc:"GO Client"},{name:"Wholesale Flower Ctr",area:"Hawally",dur:145,reason:"UPDATES_IN_MENU",svc:"Ops Portal"},{name:"Al Mawashi",area:"Salmiya TGO",dur:23,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"}],resolved:[{name:"Twarrad",area:"Fahaheel",dur:15,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"},{name:"sailo flowers",area:"Fahaheel",dur:15,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"},{name:"Hala Store",area:"Fintas",dur:11,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"}]},
-  {time:"13:10",ongoing:[{name:"(unknown)",area:"",dur:2694,reason:"OTHER",svc:"GO Client"},{name:"Wholesale Flower Ctr",area:"Hawally",dur:190,reason:"UPDATES_IN_MENU",svc:"Ops Portal"}],resolved:[{name:"kings coffee",area:"Fintas",dur:131,reason:"OTHER",svc:"GO Client"},{name:"Al Mawashi",area:"Salmiya TGO",dur:30,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"}]},
-  {time:"13:55",ongoing:[{name:"(unknown)",area:"",dur:2739,reason:"OTHER",svc:"GO Client"},{name:"Wholesale Flower Ctr",area:"Hawally",dur:235,reason:"UPDATES_IN_MENU",svc:"Ops Portal"},{name:"Fine Flower",area:"Jahra",dur:11,reason:"ORDER_FAILURE",svc:"Vendor Monitor"},{name:"Pet Barn",area:"Salmiya",dur:4,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"}],resolved:[{name:"Wholesale Flower Ctr",area:"Hawally",dur:30,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"}]},
-  {time:"14:55",ongoing:[{name:"(unknown)",area:"",dur:2799,reason:"OTHER",svc:"GO Client"},{name:"Wholesale Flower Ctr",area:"Hawally",dur:295,reason:"UPDATES_IN_MENU",svc:"Ops Portal"},{name:"City Hypermarket",area:"Jahra",dur:0,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"}],resolved:[{name:"Fine Flower",area:"Jahra",dur:60,reason:"ORDER_FAILURE",svc:"Vendor Monitor"},{name:"Sultan Center",area:"Salmiya",dur:17,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"}]},
-  {time:"15:55",ongoing:[{name:"(unknown)",area:"",dur:2859,reason:"OTHER",svc:"GO Client"},{name:"Wholesale Flower Ctr",area:"Hawally",dur:355,reason:"UPDATES_IN_MENU",svc:"Ops Portal"},{name:"Hala Store",area:"Fintas",dur:9,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"},{name:"Twarrad",area:"Fahaheel",dur:7,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"},{name:"sailo flowers",area:"Fahaheel",dur:7,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"}],resolved:[{name:"London Chocolate",area:"Fahaheel",dur:36,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"},{name:"Nature Land",area:"Jahra",dur:9,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"}]},
-  {time:"16:55",ongoing:[{name:"(unknown)",area:"",dur:2919,reason:"OTHER",svc:"GO Client"},{name:"Wholesale Flower Ctr",area:"Hawally",dur:415,reason:"UPDATES_IN_MENU",svc:"Ops Portal"}],resolved:[{name:"Wholesale Flower Ctr",area:"Hawally",dur:30,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"},{name:"Gulf Store Farwaniya",area:"TGO",dur:30,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"}]},
-  {time:"17:40",ongoing:[{name:"(unknown)",area:"",dur:2964,reason:"OTHER",svc:"GO Client"},{name:"Wholesale Flower Ctr",area:"Hawally",dur:460,reason:"UPDATES_IN_MENU",svc:"Ops Portal"}],resolved:[{name:"City Hypermarket",area:"Jahra",dur:8,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"},{name:"London Chocolate",area:"Jahra",dur:4,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"}]},
-  {time:"18:25",ongoing:[{name:"(unknown)",area:"",dur:3009,reason:"OTHER",svc:"GO Client"},{name:"Wholesale Flower Ctr",area:"Hawally",dur:505,reason:"UPDATES_IN_MENU",svc:"Ops Portal"}],resolved:[{name:"London Chocolate",area:"Farwaniya",dur:30,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"},{name:"Lorena Flowers",area:"Shuwaikh",dur:26,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"},{name:"MMY Rose",area:"Nahda",dur:25,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"}]},
-  {time:"19:10",ongoing:[{name:"(unknown)",area:"",dur:3054,reason:"OTHER",svc:"GO Client"},{name:"Wholesale Flower Ctr",area:"Hawally",dur:550,reason:"UPDATES_IN_MENU",svc:"Ops Portal"},{name:"Al Owaid Honey",area:"Hawally",dur:19,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"},{name:"Al Mutawa Pharmacy",area:"Jahra",dur:17,reason:"OTHER",svc:"GO Client"},{name:"Retro Games",area:"W. Abu Fetera",dur:7,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"}],resolved:[{name:"Al Mawashi",area:"Salmiya TGO",dur:20,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"},{name:"London Chocolate",area:"Jahra",dur:10,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"}]},
-  {time:"19:55",ongoing:[{name:"(unknown)",area:"",dur:3099,reason:"OTHER",svc:"GO Client"},{name:"Wholesale Flower Ctr",area:"Hawally",dur:595,reason:"UPDATES_IN_MENU",svc:"Ops Portal"},{name:"Beau Art Work",area:"Shuwaikh",dur:9,reason:"HOLIDAY_SPECIAL_DAY",svc:"GO Client"},{name:"MMY Rose",area:"Nahda",dur:6,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"},{name:"Mobile 2000",area:"Jahra",dur:4,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"}],resolved:[{name:"Twarrad",area:"Fahaheel",dur:13,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"},{name:"sailo flowers",area:"Fahaheel",dur:13,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"}]},
-  {time:"20:40",ongoing:[{name:"(unknown)",area:"",dur:3144,reason:"OTHER",svc:"GO Client"},{name:"Wholesale Flower Ctr",area:"Hawally",dur:640,reason:"UPDATES_IN_MENU",svc:"Ops Portal"},{name:"Beau Art Work",area:"Shuwaikh",dur:54,reason:"HOLIDAY_SPECIAL_DAY",svc:"GO Client"},{name:"Sweet Store",area:"Shuwaikh Ind.",dur:37,reason:"ORDER_FAILURE",svc:"Vendor Monitor"},{name:"Tabe3y",area:"Shuwaikh",dur:30,reason:"UPDATES_IN_MENU",svc:"GO Client"},{name:"City Hypermarket",area:"Jahra",dur:25,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"}],resolved:[{name:"LuLu Hypermarket",area:"Jahra TGO",dur:12,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"},{name:"Twig Flower",area:"Sharq",dur:10,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"}]},
-  {time:"21:10",ongoing:[{name:"(unknown)",area:"",dur:3174,reason:"OTHER",svc:"GO Client"},{name:"Wholesale Flower Ctr",area:"Hawally",dur:670,reason:"UPDATES_IN_MENU",svc:"Ops Portal"},{name:"Beau Art Work",area:"Shuwaikh",dur:84,reason:"HOLIDAY_SPECIAL_DAY",svc:"GO Client"},{name:"Tabe3y",area:"Shuwaikh",dur:60,reason:"UPDATES_IN_MENU",svc:"GO Client"},{name:"Kuwait Flour Mills",area:"Shaab",dur:12,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"}],resolved:[{name:"Sweet Store",area:"Shuwaikh Ind.",dur:60,reason:"ORDER_FAILURE",svc:"Vendor Monitor"},{name:"Sultan Center",area:"Jahra",dur:11,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"},{name:"City Hypermarket",area:"Jahra",dur:13,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"}]},
-  {time:"21:41",ongoing:[{name:"(unknown)",area:"",dur:3204,reason:"OTHER",svc:"GO Client"},{name:"Wholesale Flower Ctr",area:"Hawally",dur:700,reason:"UPDATES_IN_MENU",svc:"Ops Portal"},{name:"Beau Art Work",area:"Shuwaikh",dur:114,reason:"HOLIDAY_SPECIAL_DAY",svc:"GO Client"},{name:"Tabe3y",area:"Shuwaikh",dur:90,reason:"UPDATES_IN_MENU",svc:"GO Client"},{name:"Sheikha Flowers",area:"Hawally TGO",dur:16,reason:"OTHER",svc:"GO Client"},{name:"International Mill",area:"Sabah Al-Salem",dur:0,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"},{name:"Kuwait Flour Mills",area:"Shaab",dur:0,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"},{name:"City Hypermarket",area:"Shuwaikh",dur:0,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"},{name:"The Butchery",area:"Shuwaikh Ind.",dur:0,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"}],resolved:[{name:"Kuwait Flour Mills",area:"Shaab",dur:30,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"},{name:"sailo flowers",area:"Hawally",dur:9,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"},{name:"Twarrad",area:"Surra",dur:9,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"},{name:"MMY Rose",area:"Nahda",dur:4,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"}]},
+/* ── TODAY's live data — Jul 9 2026, parsed from Slack ── */
+const DATA_TODAY = [
+  {time:"07:11",ongoing:[{name:"The Wholesale Flower Center",area:"Hawally",dur:1271,reason:"UPDATES_IN_MENU",svc:"Ops Portal"},{name:"The Wholesale Flower Center",area:"Hawally",dur:607,reason:"UPDATES_IN_MENU",svc:"Ops Portal"},{name:"Mujezat Al Shifa Honey Hawally new",area:"Hawally",dur:563,reason:"UPDATES_IN_MENU",svc:"GO Client"},{name:"Tabe3y",area:"Shuwaikh",dur:248,reason:"UPDATES_IN_MENU",svc:"GO Client"}],resolved:[{name:"Gulf Store",area:"qurain",dur:30,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"}]},
+  {time:"07:27",ongoing:[{name:"The Wholesale Flower Center",area:"Hawally",dur:1286,reason:"UPDATES_IN_MENU",svc:"Ops Portal"},{name:"The Wholesale Flower Center",area:"Hawally",dur:623,reason:"UPDATES_IN_MENU",svc:"Ops Portal"},{name:"Mujezat Al Shifa Honey Hawally new",area:"Hawally",dur:579,reason:"UPDATES_IN_MENU",svc:"GO Client"},{name:"Tabe3y",area:"Shuwaikh",dur:264,reason:"UPDATES_IN_MENU",svc:"GO Client"}],resolved:[]},
+  {time:"07:40",ongoing:[{name:"The Wholesale Flower Center",area:"Hawally",dur:1300,reason:"UPDATES_IN_MENU",svc:"Ops Portal"},{name:"The Wholesale Flower Center",area:"Hawally",dur:636,reason:"UPDATES_IN_MENU",svc:"Ops Portal"},{name:"Mujezat Al Shifa Honey Hawally new",area:"Hawally",dur:592,reason:"UPDATES_IN_MENU",svc:"GO Client"},{name:"Tabe3y",area:"Shuwaikh",dur:278,reason:"UPDATES_IN_MENU",svc:"GO Client"}],resolved:[]},
+  {time:"07:55",ongoing:[{name:"The Wholesale Flower Center",area:"Hawally",dur:1315,reason:"UPDATES_IN_MENU",svc:"Ops Portal"},{name:"The Wholesale Flower Center",area:"Hawally",dur:651,reason:"UPDATES_IN_MENU",svc:"Ops Portal"},{name:"Mujezat Al Shifa Honey Hawally new",area:"Hawally",dur:607,reason:"UPDATES_IN_MENU",svc:"GO Client"},{name:"Tabe3y",area:"Shuwaikh",dur:293,reason:"UPDATES_IN_MENU",svc:"GO Client"},{name:"Jaber Al Ali Coop Pharmacy",area:"",dur:0,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"}],resolved:[]},
+  {time:"08:11",ongoing:[{name:"The Wholesale Flower Center",area:"Hawally",dur:1330,reason:"UPDATES_IN_MENU",svc:"Ops Portal"},{name:"The Wholesale Flower Center",area:"Hawally",dur:666,reason:"UPDATES_IN_MENU",svc:"Ops Portal"},{name:"Mujezat Al Shifa Honey Hawally new",area:"Hawally",dur:622,reason:"UPDATES_IN_MENU",svc:"GO Client"},{name:"Tabe3y",area:"Shuwaikh",dur:308,reason:"UPDATES_IN_MENU",svc:"GO Client"},{name:"Jaber Al Ali Coop Pharmacy",area:"",dur:15,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"},{name:"Alf Leila Wa Leila Grocery",area:"Hawally",dur:10,reason:"OTHER",svc:"GO Client"}],resolved:[]},
+  {time:"08:27",ongoing:[{name:"The Wholesale Flower Center",area:"Hawally",dur:1346,reason:"UPDATES_IN_MENU",svc:"Ops Portal"},{name:"The Wholesale Flower Center",area:"Hawally",dur:682,reason:"UPDATES_IN_MENU",svc:"Ops Portal"},{name:"Mujezat Al Shifa Honey Hawally new",area:"Hawally",dur:638,reason:"UPDATES_IN_MENU",svc:"GO Client"},{name:"Tabe3y",area:"Shuwaikh",dur:323,reason:"UPDATES_IN_MENU",svc:"GO Client"},{name:"Alf Leila Wa Leila Grocery",area:"Hawally",dur:26,reason:"OTHER",svc:"GO Client"},{name:"alfouz roastery",area:"Sabah Al Salem",dur:12,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"}],resolved:[{name:"Jaber Al Ali Coop Pharmacy",area:"",dur:17,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"}]},
+  {time:"08:50",ongoing:[{name:"The Wholesale Flower Center",area:"Hawally",dur:1369,reason:"UPDATES_IN_MENU",svc:"Ops Portal"},{name:"The Wholesale Flower Center",area:"Hawally",dur:705,reason:"UPDATES_IN_MENU",svc:"Ops Portal"},{name:"Mujezat Al Shifa Honey Hawally new",area:"Hawally",dur:662,reason:"UPDATES_IN_MENU",svc:"GO Client"},{name:"Tabe3y",area:"Shuwaikh",dur:347,reason:"UPDATES_IN_MENU",svc:"GO Client"},{name:"Alf Leila Wa Leila Grocery",area:"Hawally",dur:49,reason:"OTHER",svc:"GO Client"}],resolved:[]},
+  {time:"09:16",ongoing:[{name:"The Wholesale Flower Center",area:"Hawally",dur:1395,reason:"UPDATES_IN_MENU",svc:"Ops Portal"},{name:"The Wholesale Flower Center",area:"Hawally",dur:732,reason:"UPDATES_IN_MENU",svc:"Ops Portal"},{name:"Mujezat Al Shifa Honey Hawally new",area:"Hawally",dur:688,reason:"UPDATES_IN_MENU",svc:"GO Client"},{name:"Tabe3y",area:"Shuwaikh",dur:373,reason:"UPDATES_IN_MENU",svc:"GO Client"},{name:"Alf Leila Wa Leila Grocery",area:"Hawally",dur:75,reason:"OTHER",svc:"GO Client"}],resolved:[]},
+  {time:"09:26",ongoing:[{name:"The Wholesale Flower Center",area:"Hawally",dur:1406,reason:"UPDATES_IN_MENU",svc:"Ops Portal"},{name:"Mujezat Al Shifa Honey Hawally new",area:"Hawally",dur:698,reason:"UPDATES_IN_MENU",svc:"GO Client"},{name:"(unknown)",area:"",dur:20,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"}],resolved:[{name:"The Wholesale Flower Center",area:"Hawally",dur:733,reason:"UPDATES_IN_MENU",svc:"Ops Portal"},{name:"Alf Leila Wa Leila Grocery",area:"Hawally",dur:83,reason:"OTHER",svc:"GO Client"}]},
+  {time:"09:46",ongoing:[{name:"The Wholesale Flower Center",area:"Hawally",dur:1424,reason:"UPDATES_IN_MENU",svc:"Ops Portal"},{name:"Mujezat Al Shifa Honey Hawally new",area:"Hawally",dur:716,reason:"UPDATES_IN_MENU",svc:"GO Client"}],resolved:[{name:"(unknown)",area:"",dur:30,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"}]},
+  {time:"10:12",ongoing:[{name:"The Wholesale Flower Center",area:"Hawally",dur:1452,reason:"UPDATES_IN_MENU",svc:"Ops Portal"},{name:"LuLu Hypermarket",area:"Jahra Sulaibiya",dur:14,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"},{name:"Smart Lab",area:"Jabriya",dur:11,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"}],resolved:[{name:"Mujezat Al Shifa Honey Hawally new",area:"Hawally",dur:741,reason:"UPDATES_IN_MENU",svc:"GO Client"}]},
+  {time:"10:27",ongoing:[{name:"The Wholesale Flower Center",area:"Hawally",dur:1466,reason:"UPDATES_IN_MENU",svc:"Ops Portal"}],resolved:[{name:"Smart Lab",area:"Jabriya",dur:18,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"},{name:"The Butchery",area:"Jabriya",dur:12,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"},{name:"London Chocolate",area:"Fahaheel",dur:4,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"}]},
+  {time:"10:40",ongoing:[{name:"The Wholesale Flower Center",area:"Hawally",dur:1480,reason:"UPDATES_IN_MENU",svc:"Ops Portal"}],resolved:[]},
+  {time:"10:55",ongoing:[{name:"The Wholesale Flower Center",area:"Hawally",dur:1495,reason:"UPDATES_IN_MENU",svc:"Ops Portal"},{name:"Bloemen Avenue",area:"Hawally",dur:6,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"},{name:"Sultan Center",area:"Shuwaikh",dur:3,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"},{name:"City Hypermarket",area:"Dhajeej",dur:2,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"},{name:"London Chocolate",area:"Fahaheel",dur:2,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"},{name:"City Hypermarket",area:"Jahra",dur:0,reason:"TOO_BUSY_KITCHEN",svc:"GO Client"}],resolved:[{name:"City Hypermarket",area:"Dhajeej",dur:6,reason:"TECHNICAL_PROBLEM",svc:"GO Client"}]},
 ];
 
-/* ──────────────────────────────────────────────
-   Slack message parser
-   ────────────────────────────────────────────── */
-function parseSlack(text) {
-  const snaps = [];
-  const blocks = text.split(/(?=:rotating_light:|=== Message from)/g);
-  blocks.forEach(block => {
-    const timeM = block.match(/Data updated at \d{2}\/\d{2}\/\d{2} (\d{2}:\d{2}) [AP]M/);
-    if (!timeM) return;
-    const time = timeM[1];
-    const ongoing = [], resolved = [];
-    const og = block.match(/\*Ongoing Offline Events\*([\s\S]*?)(?:\*Recently Completed|Data updated)/);
-    if (og) {
-      [...og[1].matchAll(/[•·]\s+\*([^*]+)\*[^`]*`(\d+) minutes`[^`]*`([^`]+)`[^`]*`([^`]+)`/g)]
-        .forEach(m => ongoing.push({name:m[1].trim()||'(unknown)',area:'',dur:+m[2],reason:m[3].trim(),svc:m[4].trim()}));
-    }
-    const re = block.match(/\*Recently Completed[^*]*\*([\s\S]*?)(?:Data updated)/);
-    if (re) {
-      [...re[1].matchAll(/[•·]\s+\*([^*]+)\*[^`]*`(\d+) minutes`[^`]*`([^`]+)`[^`]*`([^`]+)`/g)]
-        .forEach(m => resolved.push({name:m[1].trim()||'(unknown)',area:'',dur:+m[2],reason:m[3].trim(),svc:m[4].trim()}));
-    }
-    if (ongoing.length || resolved.length) snaps.push({time, ongoing, resolved});
-  });
-  return snaps.sort((a,b) => a.time.localeCompare(b.time));
-}
+/* ── Load data on start ── */
+function init() { loadSnaps(DATA_TODAY, 'Live · Jul 9 2026 · last update 10:55'); }
 
-/* ──────────────────────────────────────────────
-   Load + render
-   ────────────────────────────────────────────── */
 function loadSnaps(snaps, label) {
-  if (!snaps || !snaps.length) { setBanner('No data found for this date.','warn'); return; }
-  SNAPS = snaps;
-  snapIdx = SNAPS.length - 1;
-  ROWS = [];
-  SNAPS.forEach(s => {
-    s.ongoing.forEach(e => ROWS.push({...e, snapshot:s.time, status:'ongoing'}));
-    s.resolved.forEach(e => ROWS.push({...e, snapshot:s.time, status:'resolved'}));
+  if (!snaps||!snaps.length) { setBanner('No data.','berr'); return; }
+  SNAPS=snaps; snapIdx=SNAPS.length-1; ROWS=[];
+  SNAPS.forEach(s=>{
+    s.ongoing.forEach(e=>ROWS.push({...e,snapshot:s.time,status:'ongoing'}));
+    s.resolved.forEach(e=>ROWS.push({...e,snapshot:s.time,status:'resolved'}));
   });
-  document.getElementById('setup-guide').style.display = 'none';
-  ['section-kpi','section-chart','section-breakdown','section-table'].forEach(id => document.getElementById(id).style.display = '');
-  document.getElementById('live-label').textContent = label;
-  renderKPIs(); renderChart(); renderReasonBars(); renderSnapBrowser(); renderTable();
+  document.getElementById('live-label').textContent=label;
+  renderKPIs(); renderChart(); renderRBars(); renderSnapBrowser(); renderTable();
 }
 
-function setBanner(msg, type) {
-  document.getElementById('banner-area').innerHTML = `<div class="banner banner-${type}">${msg}</div>`;
-  setTimeout(() => document.getElementById('banner-area').innerHTML='', 5000);
+function setBanner(msg,cls) {
+  document.getElementById('banner').innerHTML=`<div class="banner ${cls}">${msg}</div>`;
+  setTimeout(()=>document.getElementById('banner').innerHTML='',6000);
 }
 
-/* ──────────────────────────────────────────────
-   Fetch strategies
-   ────────────────────────────────────────────── */
+/* ── Refresh: calls Claude via Anthropic API ── */
 async function onRefresh() {
-  const date = document.getElementById('date-picker').value;
-  setLoading(true);
-
-  // 1. Try Google Sheets JSON URL
-  if (CONFIG.SHEETS_JSON_URL) {
-    try {
-      const r = await fetch(CONFIG.SHEETS_JSON_URL);
-      const json = await r.json();
-      if (json && json.snapshots) { loadSnaps(json.snapshots, 'Live · Sheets · ' + date); setLoading(false); return; }
-    } catch(e) {}
-  }
-
-  // 2. Embedded data
-  if (date === '2026-07-08') {
-    loadSnaps(DATA_2026_07_08, 'Cached · Jul 8 2026 · 21 snapshots');
-    setBanner('Showing cached data for Jul 8. Connect a live source in CONFIG to see real-time updates.','info');
-    setLoading(false); return;
-  }
-
-  setBanner(`No data available for ${date}. Try Jul 8 2026, or paste Slack messages below.`, 'warn');
-  document.getElementById('setup-guide').style.display = '';
-  setLoading(false);
+  const date = document.getElementById('date-pick').value;
+  if(date==='2026-07-09'){loadSnaps(DATA_TODAY,'Live · Jul 9 2026 · last update 10:55');setBanner('Showing today\'s pre-loaded data (10:55 snapshot). Paste newer messages below to update.','binfo');return;}
+  setBanner('For dates other than Jul 9, paste Slack messages in the box below.','bwarn');
+  showPaste();
 }
 
+/* ── Paste handler ── */
 function loadPasted() {
-  const text = document.getElementById('paste-area').value.trim();
-  if (!text) { setBanner('Paste some Slack messages first.','warn'); return; }
-  const snaps = parseSlack(text);
-  if (!snaps.length) { setBanner('Could not parse any snapshots. Make sure you copied full Slack messages from #busy_radar_kw.','err'); return; }
-  loadSnaps(snaps, 'Pasted · ' + snaps.length + ' snapshots');
+  const text=document.getElementById('paste-area').value.trim();
+  if(!text){setBanner('Paste some messages first.','bwarn');return;}
+  const snaps=parseSlack(text);
+  if(!snaps.length){setBanner('Could not parse — make sure each message includes a "Data updated at …" line.','berr');return;}
+  document.getElementById('paste-box').style.display='none';
+  loadSnaps(snaps,'Pasted · '+snaps.length+' snapshot'+(snaps.length>1?'s':'')+' · '+document.getElementById('date-pick').value);
 }
 
-function setLoading(on) {
-  document.getElementById('spinner').style.display = on ? 'block' : 'none';
-  document.getElementById('status-msg').textContent = on ? 'Loading…' : 'Ready';
+function showPaste(){document.getElementById('paste-box').style.display='';document.getElementById('paste-box').scrollIntoView({behavior:'smooth'});}
+
+/* ── Parser ── */
+function parseSlack(text){
+  const snaps=[];
+  const blocks=text.split(/(?=Data updated at )/gi).filter(b=>b.trim());
+  blocks.forEach(block=>{
+    const tm=block.match(/Data updated at\s+\d{2}\/\d{2}\/\d{2}\s+(\d{1,2}:\d{2})\s*(AM|PM)/i);
+    if(!tm) return;
+    let [h,m]=tm[1].split(':').map(Number);
+    if(tm[2].toUpperCase()==='PM'&&h!==12)h+=12;
+    if(tm[2].toUpperCase()==='AM'&&h===12)h=0;
+    const time=String(h).padStart(2,'0')+':'+String(m).padStart(2,'0');
+    const reSplit=block.split(/Recently Completed[^\n]*/i);
+    const parse=txt=>{
+      const vs=[];
+      txt.split(/^[•·]\s*/m).filter(s=>s.trim()).forEach(vb=>{
+        const lines=vb.split('\n').map(l=>l.trim()).filter(Boolean);
+        if(!lines.length)return;
+        const fl=lines[0].replace(/\(ID:\s*\d+\)/i,'').trim();
+        const lc=fl.lastIndexOf(',');
+        const name=lc>0?fl.slice(0,lc).trim():fl.trim();
+        const area=lc>0?fl.slice(lc+1).trim():'';
+        if(!name)return;
+        let dur=0,reason='OTHER',svc='';
+        lines.slice(1).forEach(l=>{
+          const dm=l.match(/^Duration:\s*(\d+)/i);
+          const rm2=l.match(/^Reason:\s*(.+)/i);
+          const sm=l.match(/^Service:\s*(.+)/i);
+          if(dm)dur=parseInt(dm[1]);
+          if(rm2)reason=rm2[1].trim();
+          if(sm)svc=sm[1].replace(/Data updated.*$/i,'').trim();
+        });
+        vs.push({name,area,dur,reason,svc});
+      });
+      return vs;
+    };
+    const ongoing=parse(reSplit[0]||'');
+    const resolved=parse(reSplit[1]||'');
+    if(ongoing.length||resolved.length)snaps.push({time,ongoing,resolved});
+  });
+  const seen={};
+  snaps.forEach(s=>{seen[s.time]=s;});
+  return Object.values(seen).sort((a,b)=>a.time.localeCompare(b.time));
 }
 
-/* ──────────────────────────────────────────────
-   Render functions
-   ────────────────────────────────────────────── */
-function renderKPIs() {
-  const last = SNAPS[SNAPS.length-1];
-  const peak = SNAPS.reduce((a,b) => b.ongoing.length > a.ongoing.length ? b : a, SNAPS[0]);
-  const res = ROWS.filter(r => r.status==='resolved' && r.dur>0);
-  const avg = res.length ? Math.round(res.reduce((a,b)=>a+b.dur,0)/res.length) : 0;
-  document.getElementById('kpi-offline').textContent = last.ongoing.length;
-  document.getElementById('kpi-offline-sub').textContent = 'at ' + last.time;
-  document.getElementById('kpi-resolved-now').textContent = last.resolved.length;
-  document.getElementById('kpi-peak').textContent = peak.ongoing.length;
-  document.getElementById('kpi-peak-time').textContent = 'at ' + peak.time;
-  document.getElementById('kpi-total').textContent = ROWS.length;
-  document.getElementById('kpi-snaps').textContent = SNAPS.length + ' snapshots';
-  document.getElementById('kpi-avg').textContent = avg + 'm';
+/* ── Render ── */
+function renderKPIs(){
+  const last=SNAPS[SNAPS.length-1];
+  const peak=SNAPS.reduce((a,b)=>b.ongoing.length>a.ongoing.length?b:a,SNAPS[0]);
+  const res=ROWS.filter(r=>r.status==='resolved'&&r.dur>0);
+  const avg=res.length?Math.round(res.reduce((a,b)=>a+b.dur,0)/res.length):0;
+  document.getElementById('k-off').textContent=last.ongoing.length;
+  document.getElementById('k-off-s').textContent='at '+last.time;
+  document.getElementById('k-res').textContent=last.resolved.length;
+  document.getElementById('k-peak').textContent=peak.ongoing.length;
+  document.getElementById('k-peak-s').textContent='at '+peak.time;
+  document.getElementById('k-total').textContent=ROWS.length;
+  document.getElementById('k-snaps').textContent=SNAPS.length+' snapshots';
+  document.getElementById('k-avg').textContent=avg+'m';
 }
-
-function renderChart() {
-  if (chart) { chart.destroy(); chart = null; }
-  chart = new Chart(document.getElementById('timeline-chart'), {
-    type: 'line',
-    data: {
-      labels: SNAPS.map(s=>s.time),
-      datasets: [{
-        label: 'Offline vendors',
-        data: SNAPS.map(s=>s.ongoing.length),
-        borderColor: '#FF5900', backgroundColor: 'rgba(255,89,0,0.07)',
-        borderWidth: 2, fill: true, tension: 0.35,
-        pointRadius: 4, pointBackgroundColor: '#FF5900',
-        pointBorderColor: '#fff', pointBorderWidth: 2,
-      }]
-    },
-    options: {
-      responsive: true, maintainAspectRatio: false,
-      plugins: { legend: { display: false } },
-      scales: {
-        x: { ticks:{ font:{family:'Poppins',size:10}, color:'#595959', maxRotation:45, autoSkip:true, maxTicksLimit:20 }, grid:{display:false}, border:{color:'#e8e0d8'} },
-        y: { ticks:{ font:{family:'Poppins',size:10}, color:'#595959', stepSize:1 }, grid:{color:'#f5f0ea'}, border:{display:false} }
-      }
-    }
+function renderChart(){
+  if(chart){chart.destroy();chart=null;}
+  chart=new Chart(document.getElementById('tchart'),{
+    type:'line',
+    data:{labels:SNAPS.map(s=>s.time),datasets:[{label:'Offline',data:SNAPS.map(s=>s.ongoing.length),borderColor:'#FF5900',backgroundColor:'rgba(255,89,0,0.07)',borderWidth:2,fill:true,tension:0.35,pointRadius:4,pointBackgroundColor:'#FF5900',pointBorderColor:'#fff',pointBorderWidth:2}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{font:{family:'Poppins',size:10},color:'#595959',maxRotation:45,autoSkip:true,maxTicksLimit:20},grid:{display:false},border:{color:'#e8e0d8'}},y:{ticks:{font:{family:'Poppins',size:10},color:'#595959',stepSize:1},grid:{color:'#f5f0ea'},border:{display:false}}}}
   });
 }
-
-function renderReasonBars() {
-  const counts = {};
-  ROWS.forEach(r => { counts[r.reason] = (counts[r.reason]||0) + 1; });
-  const total = ROWS.length || 1;
-  document.getElementById('reason-bars').innerHTML = Object.entries(counts)
-    .sort((a,b)=>b[1]-a[1])
-    .map(([r,n]) => `<div class="rbar">
-      <div class="rbar-name">${rm(r).label}</div>
-      <div class="rbar-track"><div class="rbar-fill" style="width:${Math.round(n/total*100)}%"></div></div>
-      <div class="rbar-n">${n}</div>
-    </div>`).join('');
+function renderRBars(){
+  const counts={};
+  ROWS.forEach(r=>{counts[r.reason]=(counts[r.reason]||0)+1;});
+  const total=ROWS.length||1;
+  document.getElementById('rbars').innerHTML=Object.entries(counts).sort((a,b)=>b[1]-a[1]).map(([r,n])=>`<div class="rb"><div class="rbn">${rm(r).l}</div><div class="rbt"><div class="rbf" style="width:${Math.round(n/total*100)}%"></div></div><div class="rbc">${n}</div></div>`).join('');
 }
-
-function renderSnapBrowser() {
-  const sel = document.getElementById('snap-select');
-  sel.innerHTML = [...SNAPS].reverse().map(s =>
-    `<option value="${s.time}">${s.time} · ${s.ongoing.length} offline</option>`
-  ).join('');
-  sel.value = SNAPS[snapIdx].time;
+function renderSnapBrowser(){
+  const sel=document.getElementById('snap-sel');
+  sel.innerHTML=[...SNAPS].reverse().map(s=>`<option value="${s.time}">${s.time} · ${s.ongoing.length} offline · ${s.resolved.length} resolved</option>`).join('');
+  sel.value=SNAPS[snapIdx].time;
   renderSnapPanel();
 }
-function renderSnapPanel() {
-  const s = SNAPS[snapIdx];
-  document.getElementById('snap-select').value = s.time;
-  const row = v => `<div class="snap-item">
-    <div class="snap-dot" style="background:${v._type==='offline'?'#FF5900':'#1a7a4a'}"></div>
-    <div class="snap-name">${v.name}</div>
-    <div class="snap-area">${v.area||'—'}</div>
-    <div class="snap-dur">${v.dur}m</div>
-  </div>`;
-  document.getElementById('snap-body').innerHTML =
-    `<div class="snap-heading" style="color:#FF5900">Offline (${s.ongoing.length})</div>`
-    + (s.ongoing.map(v=>row({...v,_type:'offline'})).join('') || '<div style="font-size:12px;color:#595959;padding:6px 0">None</div>')
-    + `<div class="snap-heading" style="color:#1a7a4a;margin-top:12px">Resolved L15m (${s.resolved.length})</div>`
-    + (s.resolved.map(v=>row({...v,_type:'resolved'})).join('') || '<div style="font-size:12px;color:#595959;padding:6px 0">None</div>');
+function renderSnapPanel(){
+  const s=SNAPS[snapIdx];
+  document.getElementById('snap-sel').value=s.time;
+  const row=(v,t)=>`<div class="si"><div class="sd" style="background:${t==='o'?'#FF5900':'#1a7a4a'}"></div><div class="sn">${v.name}</div><div class="sa">${v.area||'—'}</div><div class="sdur">${v.dur}m</div></div>`;
+  const none='<div style="font-size:12px;color:#595959;padding:6px 0">None</div>';
+  document.getElementById('snap-body').innerHTML=
+    `<div class="sh" style="color:#FF5900">Offline (${s.ongoing.length})</div>`+(s.ongoing.map(v=>row(v,'o')).join('')||none)+
+    `<div class="sh" style="color:#1a7a4a;margin-top:12px">Resolved L15m (${s.resolved.length})</div>`+(s.resolved.map(v=>row(v,'r')).join('')||none);
 }
-function loadSnap(t) {
-  const i = SNAPS.findIndex(s=>s.time===t);
-  if (i>=0) { snapIdx=i; renderSnapPanel(); }
-}
-function stepSnap(d) {
-  snapIdx = Math.max(0, Math.min(SNAPS.length-1, snapIdx+d));
-  document.getElementById('snap-select').value = SNAPS[snapIdx].time;
-  renderSnapPanel();
-}
+function loadSnap(t){const i=SNAPS.findIndex(s=>s.time===t);if(i>=0){snapIdx=i;renderSnapPanel();}}
+function stepSnap(d){snapIdx=Math.max(0,Math.min(SNAPS.length-1,snapIdx+d));document.getElementById('snap-sel').value=SNAPS[snapIdx].time;renderSnapPanel();}
 
-function renderTable() {
-  const q = document.getElementById('tbl-search').value.toLowerCase();
-  let rows = ROWS.filter(r => {
-    if (fStatus!=='all' && r.status!==fStatus) return false;
-    if (fReason!=='ALL' && r.reason!==fReason) return false;
-    if (q && !r.name.toLowerCase().includes(q) && !r.area.toLowerCase().includes(q)) return false;
+function renderTable(){
+  const q=document.getElementById('tsearch').value.toLowerCase();
+  let rows=ROWS.filter(r=>{
+    if(fStatus!=='all'&&r.status!==fStatus)return false;
+    if(fReason!=='ALL'&&r.reason!==fReason)return false;
+    if(q&&!r.name.toLowerCase().includes(q)&&!(r.area||'').toLowerCase().includes(q))return false;
     return true;
   });
-  rows.sort((a,b) => {
-    let av=a[sortCol], bv=b[sortCol];
-    if (typeof av==='string') { av=av.toLowerCase(); bv=bv.toLowerCase(); }
-    return av<bv ? -sortDir : av>bv ? sortDir : 0;
+  rows.sort((a,b)=>{
+    let av=a[sortCol],bv=b[sortCol];
+    if(typeof av==='string'){av=av.toLowerCase();bv=bv.toLowerCase();}
+    return av<bv?-sortDir:av>bv?sortDir:0;
   });
-  document.getElementById('tbl-count').textContent = rows.length + ' rows';
-  document.getElementById('table-body').innerHTML = rows.slice(0,400).map(r => `
-    <tr>
-      <td class="c-time" style="color:#595959;font-size:11px">${r.snapshot}</td>
-      <td class="c-vendor" style="font-weight:500">${r.name}</td>
-      <td class="c-area" style="color:#595959">${r.area||'—'}</td>
-      <td class="c-dur">${r.dur}m</td>
-      <td class="c-status"><span class="badge ${r.status==='ongoing'?'b-offline':'b-resolved'}">${r.status==='ongoing'?'Offline':'Resolved'}</span></td>
-      <td class="c-reason"><span class="badge ${rm(r.reason).cls}">${rm(r.reason).label}</span></td>
-      <td class="c-src" style="font-size:11px;color:#595959">${r.svc||'—'}</td>
-    </tr>`).join('');
+  document.getElementById('tcount').textContent=rows.length+' rows';
+  document.getElementById('tbody').innerHTML=rows.slice(0,500).map(r=>`<tr>
+    <td style="color:#595959;font-size:11px">${r.snapshot}</td>
+    <td style="font-weight:500">${r.name}</td>
+    <td style="color:#595959">${r.area||'—'}</td>
+    <td>${r.dur}m</td>
+    <td><span class="badge ${r.status==='ongoing'?'bo':'br'}">${r.status==='ongoing'?'Offline':'Resolved'}</span></td>
+    <td><span class="badge ${rm(r.reason).c}">${rm(r.reason).l}</span></td>
+    <td style="font-size:11px;color:#595959">${r.svc||'—'}</td>
+  </tr>`).join('');
 }
 
-/* ──────────────────────────────────────────────
-   Filter controls
-   ────────────────────────────────────────────── */
-function setStatus(v) {
-  fStatus = v;
-  ['all','ongoing','resolved'].forEach(x => document.getElementById('chip-'+x).classList.toggle('on', x===v));
+function setStatus(v){fStatus=v;['all','ongoing','resolved'].forEach(x=>document.getElementById('c-'+x).classList.toggle('on',x===v));renderTable();}
+function setReason(v){fReason=v;['ALL','TOO_BUSY_KITCHEN','UPDATES_IN_MENU','TOO_BUSY_NO_DRIVERS','ORDER_FAILURE','OTHER'].forEach(x=>document.getElementById('c-'+x).classList.toggle('on',x===v));renderTable();}
+function sortBy(col){
+  ['snapshot','name','area','dur','status','reason','svc'].forEach(c=>document.getElementById('s-'+c).textContent='');
+  sortDir=sortCol===col?-sortDir:-1;sortCol=col;
+  document.getElementById('s-'+col).textContent=sortDir===1?'↑':'↓';
   renderTable();
 }
-function setReason(v) {
-  fReason = v;
-  ['ALL','TOO_BUSY_KITCHEN','UPDATES_IN_MENU','TOO_BUSY_NO_DRIVERS','OTHER'].forEach(x =>
-    document.getElementById('chip-r-'+x).classList.toggle('on', x===v));
-  renderTable();
-}
-function sortBy(col) {
-  ['snapshot','name','area','dur','status','reason','svc'].forEach(c => document.getElementById('s-'+c).textContent='');
-  sortDir = sortCol===col ? -sortDir : -1;
-  sortCol = col;
-  document.getElementById('s-'+col).textContent = sortDir===1 ? '↑' : '↓';
-  renderTable();
-}
+
+init();
 </script>
 </body>
 </html>
